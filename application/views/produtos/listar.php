@@ -47,7 +47,7 @@
                                 <td> <?php echo $produto->qtd_estoque ?> </td>
                                 <td> <?php echo $produto->qtd_locado ?> </td>
                                 <td> <?php echo $produto->qtd_descartado ?> </td>
-                                <td> <?php echo $produto->data_cadastro ?> </td>
+                                <td> <?php $data = $produto->data_cadastro; echo $data = date("d-m-Y"); ?> </td>
                                 <td> <?php echo $produto->detalhes ?> </td>
                                 <td> <?php echo $produto->dias_devolucao ?> </td>
                                 <td> <?php echo $produto->status ?> </td>
