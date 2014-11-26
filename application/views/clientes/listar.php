@@ -32,6 +32,7 @@
                     <td> <?php echo $cliente->rg ?> </td>
                     <td> <?php echo $cliente->email ?> </td>
                     <td>
+                      <a href="<?php echo base_url("enderecos/listar/" . $cliente->id); ?>" class="btn btn-xs btn-primary" > <i class="glyphicon glyphicon-home" ></i> Endereço </a>
                       <a href="<?php echo base_url("clientes/editar/" . $cliente->id); ?>" class="btn btn-xs btn-warning" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
                       <a href="<?php echo base_url("clientes/deletar/" . $cliente->id); ?>" data-descricao="<?php echo $cliente->nome ?>" class="btn btn-xs btn-danger btn-modal-deletar" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
                     </td>
