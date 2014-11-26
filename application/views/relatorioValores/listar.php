@@ -12,13 +12,14 @@
                 
                 <form role="form" method="post">
                     <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="DataInicial">Data Inicial</label>
-                            <input type="text" class="form-control" name="dia1" id="DataInicial" required="" placeholder="aaaa/mm/dd"/>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <label for="data">Data Inicial</label>
+                            <input type="text" class="form-control" name="dia1" id="data" required="" placeholder="aaaa/mm/dd"/>
                         </div>
-                        <div class="col-md-6">
-                            <label for="DataFinal">Data Final</label>
-                            <input type="text" class="form-control" name="dia2" id="DataFinal" required="" placeholder="aaaa/mm/dd"/>
+                        <div class="col-md-3">
+                            <label for="data2">Data Final</label>
+                            <input type="text" class="form-control" name="dia2" id="data2" required="" placeholder="aaaa/mm/dd"/>
                         </div>
                     </div>
                     <div class="form-group col-md-12">
