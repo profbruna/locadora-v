@@ -5,9 +5,9 @@ if (!defined('BASEPATH')) {
 }
 
 /**
- * Controller :: Classificação
+ * Controller :: ClassificaÃ§Ã£o
  * 
- * @author Dã e Nicolas
+ * @author DÃ£ e Nicolas
  * @package application.controllers
  */
 class Classificacoes extends CI_Controller {
@@ -24,7 +24,7 @@ class Classificacoes extends CI_Controller {
      * index
      */
     public function index() {
-        //redirecionamento para a pagina de listagem quando nao for deninido qual a ação
+        //redirecionamento para a pagina de listagem quando nao for deninido qual a aï¿½ï¿½o
         redirect("classificacoes/listar");
     }
 
@@ -33,7 +33,7 @@ class Classificacoes extends CI_Controller {
      */
     public function listar() {
         $data = Array(
-            "title" => " Listar Classificações ",
+            "title" => " Listar ClassificaÃ§Ãµes ",
             "view" => "classificacoes/listar",
             "data" => Array(
                 "paginacao" => createPaginate(strtolower(get_class()), $this->classificacao->quantidade()),
@@ -60,7 +60,7 @@ class Classificacoes extends CI_Controller {
             }
         }
         $data = Array(
-            "title" => "Adicionar Classificações",
+            "title" => "Adicionar ClassificaÃ§Ãµes",
             "view" => "classificacoes/adicionar",
             "data" => Array(
             )
@@ -87,7 +87,7 @@ class Classificacoes extends CI_Controller {
             }
         }
         $data = Array(
-            "title" => "Editar Classificações",
+            "title" => "Editar ClassificaÃ§Ãµes",
             "view" => "classificacoes/editar",
             "data" => Array(
                 "classificacao" => $this->classificacao->listarPorId($id)
@@ -114,17 +114,17 @@ class Classificacoes extends CI_Controller {
     /**
      * --------------------------------------------------------------------------
      * ---------------------------------
-     * ------ Métodos especificos
+     * ------ Mï¿½todos especificos
      */
 
     /**
-     * @description Método que realiza as validações dos campos
+     * @description Mï¿½todo que realiza as validaï¿½ï¿½es dos campos
      * 
      * @param Array $dados
      * @return boolean
      */
     public function validacao() {
-        $this->form_validation->set_rules("descricao", "Descrição", "required");
+        $this->form_validation->set_rules("descricao", "Descriï¿½ï¿½o", "required");
         return $this->form_validation->run();
     }
 
