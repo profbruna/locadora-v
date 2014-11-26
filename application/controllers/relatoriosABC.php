@@ -26,7 +26,7 @@ class RelatoriosABC extends CI_Controller {
     public function index() {
         //redirecionamento para a pagina de listagem quando nao for deninido qual a a?ao
             $data = Array(
-            "title" => " Relatório Mais Locados ",
+            "title" => " RelatÃ³rio Mais Locados ",
             "view" => "relatoriosABC/listar",
             "data" => Array(
                 "relatorioABC" => null
@@ -44,7 +44,7 @@ class RelatoriosABC extends CI_Controller {
         $dataInicio = $this->input->post("dataInicio");
         $dataFim = $this->input->post("dataFim");
         $data = Array(
-            "title" => " Relatório Produtos mais Locados ",
+            "title" => " RelatÃ³rio Produtos mais Locados ",
             "view" => "relatoriosABC/listar",
             "data" => Array(
                 "relatoriosABC" => $this->relatorioABC->pegarPorLimiteData($dataInicio, $dataFim)
@@ -71,7 +71,7 @@ class RelatoriosABC extends CI_Controller {
     public function validacao($dados) {
         $this->form_validation->set_rules("quantidade", 'Quantidade', 'required');
       
-        //executar validações
+        //executar validaï¿½ï¿½es
         return $this->form_validation->run();
     }
 
