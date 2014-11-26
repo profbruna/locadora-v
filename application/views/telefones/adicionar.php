@@ -13,21 +13,23 @@
     </div>
     <form role="form" method="post">
         <div class="form-group row">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label for="Nome">Numero</label>
                 <input type="text" class="form-control" name="numero" id="Numero" required=""/>
             </div>  
-            <div class="col-md-3">
-                <label for="Nome">Tipo</label>
-                <input type="text" class="form-control" name="tipo" id="Tipo" required=""/>
-            </div>  
-            <div class="col-md-4">
-                <label for="Cliente_id">Cliente</label>
-                <select class="selectpicker" name="cliente_id" required="required">
-                    <?php foreach ($cliente as $clientes) { ?>
-                        <option value="<?php echo $clientes->id ?>" > <?php echo $clientes->nome ?> </option>
-                    <?php } ?>
+            <div class="col-md-6">
+                <label for="Tipo">Tipo</label><br/>
+                <select class="selectpicker" name="tipo" required="required">
+                    <option value="1">Residencial</option>
+                    <option value="2">Comercial</option>
+                    <option value="3">Celular</option>
+                    <option value="4">Inativo</option>
                 </select>
+            </div>  
+            <div class="col-md-6">
+                <?php foreach ($cliente as $clientes) { ?>
+                    <input type="hidden" class="form-control" name="cliente_id" value="<?php echo $clientes->id ?>"/>
+                <?php } ?>
             </div>
         </div>
         <div class="form-group col-md-12">
