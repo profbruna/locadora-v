@@ -4,12 +4,6 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-/**
- * Controller :: Cidades
- * 
- * @author Rodrigo Cachoeira
- * @package application.controllers
- */
 class Usuarios extends CI_Controller {
 
     /**
