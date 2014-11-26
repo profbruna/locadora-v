@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h3> Relatório Produtos mais Locados </h3>
+        <h3> RelatÃ³rio Produtos mais Locados </h3>
     </div>
 </div>
 
@@ -13,7 +13,7 @@
         <form method="post" action="<?php echo base_url('relatoriosABC/listar');?>">
             <div class="form-group row">
                 <div class="col-md-2">
-                    <label>Data Início:</label>
+                    <label>Data InÃ­cio:</label>
                     <input type="text"  id="data" name="dataInicio" class="datepicker form-control">
 
                 </div>
