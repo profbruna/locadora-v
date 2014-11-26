@@ -56,7 +56,7 @@ class Telefones extends CI_Controller {
             $telefone = elements(Array("numero", "tipo", "cliente_id"), $this->input->post());
             if ($this->validacao()) {
                 if ($this->telefone->adicionar($telefone)) {
-                    $this->mensagem->sucesso("telefones/adicionar/" . $id);
+                    $this->mensagem->sucesso("telefones/listar/" . $id);
                 } else {
                     $this->mensagem->erro("telefones/listar/" . $id);
                 }

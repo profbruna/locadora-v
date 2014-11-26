@@ -19,8 +19,13 @@
                 <input type="text" value="<?php echo $telefone[0]->numero ?>" class="form-control" name="numero" id="Numero" required=""/>
             </div>  
             <div class="col-md-6">
-                <label for="Nome">Tipo</label>
-                <input type="text" value="<?php echo $telefone[0]->tipo ?>" class="form-control" name="tipo" id="Tipo" required=""/>
+                <label for="Tipo">Tipo</label><br/>
+                <select class="selectpicker" name="tipo" required="required">
+                    <option value="1">Residencial</option>
+                    <option value="2">Comercial</option>
+                    <option value="3">Celular</option>
+                    <option value="4">Inativo</option>
+                </select>
             </div>
         </div>
         <div class="form-group col-md-12">
