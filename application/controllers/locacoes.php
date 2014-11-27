@@ -81,13 +81,52 @@ class Locacoes extends CI_Controller {
             redirect("locacao/listar");
         }
         if ($this->produtolocacao->deletarPorCondicoesEspecial(Array("locacao_id" => $id))) {
-            if( $this->financeiro->deletarPorCondicoes( Array( "locacao_id" => $id ) ) ) {
+            if ($this->financeiro->deletarPorCondicoes(Array("locacao_id" => $id))) {
                 if ($this->locacao->deletarPeloId($id)) {
                     $this->mensagem->sucesso("locacoes/listar");
                 }
             }
         }
         $this->mensagem->erro("locacoes/listar");
+    }
+
+    function devolucao() {
+
+        $data = array(
+            "title" => "Devolução de locações",
+            "view" => "locacoes/devolucao",
+            "data" => Array(
+                "produto_locacoes" => $this->produtolocacao->listarPorCondicoes(Array("locacao_id" => $this->uri->segment(3))),
+                "produtos" => $this->produto->listarComChave()
+            )
+        );
+        $this->load->view("layouts/default", $data);
+    }
+
+    function devolver() {
+        $id = $this->uri->segment(3);
+        if (!$this->produtolocacao->existe($id)) {
+            redirect('locacoes/devolucao/' . $id);
+        } else {
+            if ($this->produtolocacao->verificaQtd()) {
+                redirect('locacoes/devolucao/' . $this->uri->segment(4));
+            }
+            //$this->produtolocacao->deletarPeloId($id);
+            //$this->mensagem->sucesso('locacoes/devolucao/' . $this->uri->segment(4));
+        }
+    }
+
+    function devolverTodos() {
+        $id = $this->uri->segment(3);
+        if (!$this->produtolocacao->existe($id)) {
+            redirect('locacoes/devolucao/' . $id);
+        } else {
+            if ($this->produtolocacao->devolveTodos()) {
+                $this->mensagem->sucesso('locacoes/devolucao/' . $this->uri->segment(4));
+            }
+            //$this->produtolocacao->deletarPeloId($id);
+            //$this->mensagem->sucesso('locacoes/devolucao/' . $this->uri->segment(4));
+        }
     }
 
     /**
