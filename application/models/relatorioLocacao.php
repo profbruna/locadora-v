@@ -26,7 +26,6 @@ class relatorioLocacao extends App {
         if (isset($data_inicial, $data_final)) {
             $this->db->where("data_devolucao >=", $data_inicial);
             $this->db->where("data_devolucao <=", $data_final);
-            $this->db->limit(3, 0);
             return $this->db->get($this->table)->result();
         }
         return false;

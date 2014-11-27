@@ -42,6 +42,7 @@
                 <th> CPF </th>
                 <th> RG </th>
                 <th> E-mail </th>
+                <th> Nascimento </th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +58,8 @@
                         <td> <?php echo $relatorioCliente->cpf ?> </td>
                         <td> <?php echo $relatorioCliente->rg ?> </td>
                         <td> <?php echo $relatorioCliente->email ?> </td>
+                        <td> <?php echo date("d/m/Y", strtotime($relatorioCliente->nascimento)) ?> </td>
+                        
                     </tr>
                     <?php
                 endforeach;
