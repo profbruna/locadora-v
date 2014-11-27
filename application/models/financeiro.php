@@ -42,7 +42,7 @@ class Financeiro extends App {
         //Verifica se já existe um lnaçamento para esta locação
         $DadosLancamento = $this->listarPorCondicoes(array("locacao_id" => $LocacaoId));
 
-        $financeiro = array("vencimento" => $LocacaoVencimento, "valor" => $LocacaoValor);
+        $financeiro = array("vencimento" => $LocacaoVencimento, "valor" => $LocacaoValor, "valor_pago" => 0);
         if (empty($DadosLancamento)) {
             $financeiro["locacao_id"] = $LocacaoId;
             $acao = $this->adicionar($financeiro);
