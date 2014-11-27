@@ -1,5 +1,5 @@
-<?php 
- 
+<?php
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -17,14 +17,14 @@ class Cidades extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array("cidade", "estado"));
+        $this->load->model(Array("cidade", "estado", "endereco"));
     }
 
     /**
      * index
      */
     public function index() {
-        //redirecionamento para a pagina de listagem quando nao for deninido qual a açao
+        //redirecionamento para a pagina de listagem quando nao for deninido qual a aÃ§Ã£o
         redirect("cidades/listar");
     }
 
@@ -54,12 +54,12 @@ class Cidades extends CI_Controller {
             $cidade = elements(Array("nome", "estado_id"), $this->input->post());
             if ($this->validacao()) {
                 if ($this->cidade->adicionar($cidade)) {
-                    $this->mensagem->sucesso("cidades/adicionar");
+                    $this->mensagem->sucesso("cidades/listar");
                 } else {
-                    $this->mensagem->erro("cidades/listar");
+                    $this->mensagem->erro("cidades/adiconar");
                 }
             } else {
-                $this->mensagem->sucesso("cidades/adicionar");
+                $this->mensagem->erro("cidades/adiconar");
             }
         }
         $data = Array(
@@ -109,21 +109,26 @@ class Cidades extends CI_Controller {
         if (!$this->cidade->existe($id)) {
             redirect("cidades/listar");
         }
-        if ($this->cidade->deletarPeloId($id)) {
-            $this->mensagem->sucesso("cidades/listar");
-        } else {
-            $this->mensagem->erro("cidades/listar");
+        $enderecos = $this->endereco->listarPorCondicoes(Array("cidade_id" => $id));
+        if (!$enderecos) {
+            if ($this->cidade->deletarPeloId($id)) {
+                $this->mensagem->sucesso("cidades/listar");
+            } else {
+                $this->mensagem->erro("cidades/listar");
+            }
+        }else{
+            $this->mensagem->erro( "cidades/listar", "Esta cidade possui endereÃ§os ligados a ela" );
         }
     }
 
     /**
      * --------------------------------------------------------------------------
      * ---------------------------------
-     * ------ Métodos especificos
+     * ------ MÃ©todos especificos
      */
 
     /**
-     * @description Método que realiza as validações dos campos
+     * @description MÃ©todo que realiza as validaÃ§Ãµes dos campos
      * 
      * @param Array $dados
      * @return boolean
@@ -132,7 +137,7 @@ class Cidades extends CI_Controller {
         $this->form_validation->set_rules("nome", 'Nome', 'required');
         $this->form_validation->set_rules("estado_id", 'Estado', 'required');
 
-        //executar validações
+        //executar validaÃ§Ãµes
         return $this->form_validation->run();
     }
 
