@@ -51,6 +51,9 @@ class Financeiros extends CI_Controller {
         /// SEU CÃDIGO RODRIGO
         $this->load->model(Array("locacao"));
         $Dados = $this->locacao->ListarPorId($LocacaoId);
+        if (empty($Dados)) {
+            $this->mensagem->erro("financeiros/listar");
+        }
         /// SEU CÃDIGO RODRIGO
 
         $this->load->model(Array("condicao"));
