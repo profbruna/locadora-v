@@ -8,9 +8,10 @@
 <br/>
 
 <div class="col-md-10 col-md-offset-1">
-
+ 
     <div class="row box-options">
-        <a  href="<?php echo base_url("enderecos/adicionar") ?>" class="btn btn-primary pull-right" > <i class="glyphicon glyphicon-plus" ></i> Adicionar </a>
+        <a class="btn btn-danger btn-voltar" > <i class="glyphicon glyphicon-arrow-left" ></i> Voltar </a>
+        <a  href="<?php echo base_url("enderecos/adicionar/".$this->uri->segment(3)) ?>" class="btn btn-primary pull-right" > <i class="glyphicon glyphicon-plus" ></i> Adicionar </a>
     </div>
 
     <table class="table table-hover table-striped" >
@@ -39,8 +40,8 @@
                     <td> <?php echo $cidades[$endereco->cidade_id]->nome ?> </td>
 
                     <td> 	 	 	 	 
-                        <a href="<?php echo base_url("enderecos/editar/" . $endereco->id); ?>" class="btn btn-xs btn-warning" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
-                        <a href="<?php echo base_url("enderecos/deletar/" . $endereco->id); ?>" data-descricao="<?php echo $endereco->id ?>" class="btn btn-xs btn-danger btn-modal-deletar" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
+                        <a href="<?php echo base_url("enderecos/editar/" . $endereco->id."/".$this->uri->segment(3)); ?>" class="btn btn-xs btn-warning" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
+                        <a href="<?php echo base_url("enderecos/deletar/" . $endereco->id."/".$this->uri->segment(3)); ?>" data-descricao="<?php echo $endereco->id ?>" class="btn btn-xs btn-danger btn-modal-deletar" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

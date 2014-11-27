@@ -7,7 +7,7 @@ if (!defined('BASEPATH')) {
 /**
  * Controller :: Enderecos
  * 
- * @author Ruan C�lio dos Anjos e Camila Torquato Jung
+ * @author Ruan Célio dos Anjos e Camila Torquato Jung
  */
 class Enderecos extends CI_Controller {
 
@@ -25,9 +25,10 @@ class Enderecos extends CI_Controller {
     public function adicionar() {
         if ($this->input->post()) {
             $endereco = elements(Array("cliente_id", "logradouro", "tipo", "cep", "numero", "bairro", "complemento", "cidade_id"), $this->input->post());
+
             if ($this->validacao()) {
                 if ($this->endereco->adicionar($endereco)) {
-                    $this->mensagem->sucesso("enderecos/adicionar");
+                    $this->mensagem->sucesso("enderecos/listar/".$this->uri->segment(3));
                 } else {
                     $this->mensagem->erro("enderecos/listar");
                 }
@@ -40,7 +41,7 @@ class Enderecos extends CI_Controller {
             "view" => "enderecos/adicionar",
             "data" => Array(
                 'cidades' => $this->cidade->listarTodos(),
-                'clientes' => $this->cliente->listarTodos(),
+                'clientes' => $this->cliente->listarPorId($this->uri->segment(3)),
                 'tipos' => $this->tipo->listarTodos()
             )
         );
@@ -60,7 +61,7 @@ class Enderecos extends CI_Controller {
 
             if ($this->validacao()) {
                 if ($this->endereco->editarPeloId($id, $endereco)) {
-                    $this->mensagem->sucesso("enderecos/listar");
+                    $this->mensagem->sucesso("enderecos/listar/" . $this->uri->segment(4));
                 } else {
                     $this->mensagem->erro("enderecos/editar/" . $id);
                 }
@@ -88,12 +89,14 @@ class Enderecos extends CI_Controller {
      * visualizar um endereco
      */
     public function listar() {
+        $id = $this->uri->segment(3);
         $data = Array(
             "title" => " Listar endereço ",
             "view" => "enderecos/listar",
             "data" => Array(
                 "paginacao" => createPaginate(strtolower(get_class()), $this->endereco->quantidade()),
                 "enderecos" => $this->endereco->pegarPorLimite(registerPage(), page()),
+                "enderecos" => $this->endereco->listarPorCondicoes(Array('cliente_id' => $id)),
                 //'enderecos' => $this->endereco->listarTodos(),
                 'cidades' => $this->cidade->listarComChave(),
                 'tipos' => $this->tipo->listarComChave()
@@ -107,13 +110,14 @@ class Enderecos extends CI_Controller {
      */
     public function deletar() {
         $id = $this->uri->segment(3);
+
         if (!$this->endereco->existe($id)) {
-            redirect("enderecos/listar");
+            redirect("enderecos/listar/" . $this->uri->segment(3));
         }
         if ($this->endereco->deletarPeloId($id)) {
-            $this->mensagem->sucesso("enderecos/listar");
+            $this->mensagem->sucesso("enderecos/listar/" . $this->uri->segment(4));
         } else {
-            $this->mensagem->erro("enderecos/listar");
+            $this->mensagem->erro("enderecos/listar/" . $this->uri->segment(4));
         }
     }
 
