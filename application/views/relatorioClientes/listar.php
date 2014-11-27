@@ -1,7 +1,7 @@
 
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h3> Relatorio Locações </h3>
+        <h3> Relatorio de Clientes </h3>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -11,7 +11,7 @@
 
 
     <div class="row box-options">
-        <form method="post" action="<?php echo base_url("relatorioLocacoes/listar") ?>">
+        <form method="post" action="<?php echo base_url("relatorioClientes/listar") ?>">
             <div class="form-group row">
                 <div class="col-md-2">
                     <label>Data inicial:</label>
@@ -37,23 +37,28 @@
         <thead>
             <tr>
                 <th> #id </th>
-                <th> Produto </th>
-                <th> Data Devolução </th>
-                <th> Hora Devolução </th>
+                <th> Nome </th>
+                <th> CPF </th>
+                <th> RG </th>
+                <th> E-mail </th>
+                <th> Nascimento </th>
             </tr>
         </thead>
         <tbody>
             <?php
-            if ($relatorioLocacoes == null) {
+            if ($relatorioClientes == null) {
                 
             } else {
-                foreach ($relatorioLocacoes as $relatorioLocacao):
+                foreach ($relatorioClientes as $relatorioCliente):
                     ?>
                     <tr>
-                        <td> <?php echo $relatorioLocacao->id ?> </td>
-                        <td> <?php echo $produtos[ $relatorioLocacao->produto_id ]->nome ?> </td>
-                        <td> <?php echo date("d/m/Y", strtotime($relatorioLocacao->data_devolucao)) ?> </td>
-                        <td> <?php echo $relatorioLocacao->hora_devolucao ?> </td>
+                        <td> <?php echo $relatorioCliente->id ?> </td>
+                        <td> <?php echo $relatorioCliente->nome ?> </td>
+                        <td> <?php echo $relatorioCliente->cpf ?> </td>
+                        <td> <?php echo $relatorioCliente->rg ?> </td>
+                        <td> <?php echo $relatorioCliente->email ?> </td>
+                        <td> <?php echo date("d/m/Y", strtotime($relatorioCliente->nascimento)) ?> </td>
+                        
                     </tr>
                     <?php
                 endforeach;
@@ -67,7 +72,7 @@
             <nav>
 
                 <?php
-                if ($relatorioLocacoes == null) {
+                if ($relatorioClientes == null) {
                     
                 } else {
                     echo $this->pagination->create_links();

@@ -1,9 +1,10 @@
 
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h3> Relatorio Locações </h3>
+        <h3> Relatorio Baixa </h3>
     </div>
 </div>
+
 <div class="clearfix"></div>
 <br/>
 
@@ -11,16 +12,16 @@
 
 
     <div class="row box-options">
-        <form method="post" action="<?php echo base_url("relatorioLocacoes/listar") ?>">
+        <form method="post" action="<?php echo base_url("relatorioBaixas/listar") ?>">
             <div class="form-group row">
                 <div class="col-md-2">
                     <label>Data inicial:</label>
-                    <input type="text"  id="data" name="data_inicial" class="datepicker form-control">
+                    <input type="text"  id="data" name="data_inicial" class="datepicker form-control" required="">
 
                 </div>
                 <div class="col-md-2">
                     <label>Data final:</label>
-                    <input type="text"  id="data2" name="data_final" class="datepicker form-control">
+                    <input type="text"  id="data2" name="data_final" class="datepicker form-control" required="">
                 </div>
             </div>
             <div class="form-group row">
@@ -37,43 +38,37 @@
         <thead>
             <tr>
                 <th> #id </th>
-                <th> Produto </th>
-                <th> Data Devolução </th>
-                <th> Hora Devolução </th>
+                <th> Data </th>
+                <th> Valor </th>
             </tr>
         </thead>
         <tbody>
             <?php
-            if ($relatorioLocacoes == null) {
+            if ($relatorioBaixas == null) {
                 
             } else {
-                foreach ($relatorioLocacoes as $relatorioLocacao):
+                foreach ($relatorioBaixas as $relatorioBaixa):
                     ?>
                     <tr>
-                        <td> <?php echo $relatorioLocacao->id ?> </td>
-                        <td> <?php echo $produtos[ $relatorioLocacao->produto_id ]->nome ?> </td>
-                        <td> <?php echo date("d/m/Y", strtotime($relatorioLocacao->data_devolucao)) ?> </td>
-                        <td> <?php echo $relatorioLocacao->hora_devolucao ?> </td>
+                        <td> <?php echo $relatorioBaixa->id ?> </td>
+                        <td> <?php echo date("d/m/Y", strtotime($relatorioBaixa->data)); ?> </td>
+                        <td> <?php echo $relatorioBaixa->valor ?> </td>
                     </tr>
                     <?php
                 endforeach;
             }
             ?>
         </tbody>
+
     </table>
     <div class="row">
         <div class="col-xs-6"></div>
         <div class="col-xs-6">
             <nav>
-
-                <?php
-                if ($relatorioLocacoes == null) {
-                    
-                } else {
-                    echo $this->pagination->create_links();
-                }
-                ?>
             </nav>
         </div>
     </div>
+
+
+
 </div>

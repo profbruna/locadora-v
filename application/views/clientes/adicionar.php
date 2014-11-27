@@ -17,6 +17,10 @@
                 <label for="Nome">Nome</label>
                 <input type="text" class="form-control" name="nome" id="Nome" required=""/>
             </div>
+            <div class="col-md-12">
+                <label for="Nome">Nascimento</label>
+                <input type="text"  id="data3" name="nascimento" class="datepicker form-control">
+            </div>
             
             <div class="col-md-6">
                 <label for="Cpf">CPF</label>

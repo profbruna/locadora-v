@@ -18,6 +18,10 @@
                 <label for="Nome">Nome</label>
                 <input type="text" value="<?php echo $cliente[0]->nome ;?>" class="form-control" name="nome" id="Nome" required=""/>
             </div>
+            <div class="col-md-12">
+                <label for="Nome">Nascimento</label>
+                <input type="text" id="data3" value="<?php echo $cliente[0]->nascimento ;?>" class="datepicker form-control" name="nascimento" required=""/>
+            </div>
             
             <div class="col-md-6">
                 <label for="Cpf">CPF</label>
