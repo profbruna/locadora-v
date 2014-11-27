@@ -1,11 +1,9 @@
 $(document).ready(function() {
     $('#data').datepicker({
-        format: "yyyy-mm-dd",
-        language: "pt"
+        format: "yyyy-mm-dd"
     });
     $('#data2').datepicker({
-        format: "yyyy-mm-dd",
-        language: "pt"
+        format: "yyyy-mm-dd"
     });
     $(".mask-telefone").mask("(99) 9999-9999");
 
