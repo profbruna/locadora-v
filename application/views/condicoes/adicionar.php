@@ -1,7 +1,7 @@
-<?php header('Content-type: text/html; charset=utf-8'); ?>
+
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h2> Adicionar CondiÃ§Ã£o de Pagamento </h2>
+        <h2> Adicionar Condição de Pagamento </h2>
     </div>
     <div class="col-md-12">
         <a class="btn btn-danger btn-voltar" > <i class="glyphicon glyphicon-arrow-left" ></i> Voltar </a>
@@ -10,26 +10,6 @@
 
 <div class="clearfix"></div>
 <br/>
-<div class="col-md-8 col-md-offset-2">
-    <output>
-        <?php
-        $Type = $this->session->flashdata('output_type');
-        if ($Type !== false) {
-            if ($Type == "success") {
-                echo " <div class='alert alert-success alert-dismissible' role='alert'>";
-            } else if ($Type == "alert") {
-                echo " <div class='alert alert-warning alert-dismissible' role='alert'>";
-            } else {
-                echo " <div class='alert alert-danger alert-dismissible' role='alert'>";
-            }
-            echo "  <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
-            echo "  <strong>{$this->session->flashdata('output_text')}</strong>";
-            echo " </div>";
-        }
-        ?>
-
-    </output>
-</div>
 <div class="col-md-8 col-md-offset-2">
 
     <form role="form" method="post" action="<?php echo base_url("condicoes/adicionar") ?>">

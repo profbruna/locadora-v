@@ -1,7 +1,7 @@
-<?php header('Content-type: text/html; charset=utf-8'); ?>
+
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h3> CondiÃ§Ãµes </h3>
+        <h3> Condições </h3>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
                 <th> Nome </th>
                 <th> Parcelas </th>
                 <th> Dias Vencimento </th>
-                <th> AÃ§Ãµes </th>
+                <th> Ações </th>
             </tr>
         </thead>
         <tbody>
