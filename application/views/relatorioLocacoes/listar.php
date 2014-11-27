@@ -4,7 +4,6 @@
         <h3> Relatorio Locações </h3>
     </div>
 </div>
-
 <div class="clearfix"></div>
 <br/>
 

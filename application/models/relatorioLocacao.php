@@ -3,13 +3,6 @@
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
-
-/**
- * Model :: Cidade
- * 
- * @author Rodrigo Cachoeira
- * @package application.models
- */
 class relatorioLocacao extends App {
 
     protected $table = "produto_locacao";

@@ -6,9 +6,6 @@ if (!defined('BASEPATH')) {
 
 class relatorioClientes extends CI_Controller {
 
-    /**
-     * construct
-     */
     public function __construct() {
         parent::__construct();
         $this->load->model(Array("relatorioCliente"));

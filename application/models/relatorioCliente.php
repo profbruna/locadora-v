@@ -4,12 +4,6 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-/**
- * Model :: Cidade
- * 
- * @author Rodrigo Cachoeira
- * @package application.models
- */
 class relatorioCliente extends App {
 
     protected $table = "cliente";
