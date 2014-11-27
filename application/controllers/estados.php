@@ -7,7 +7,7 @@ if (!defined('BASEPATH')) {
 /**
  * Controller :: Estados
  * 
- * @author Yuri Alcântara
+ * @author Yuri Alcï¿½ntara
  * @package application.controllers
  */
 class Estados extends CI_Controller {
@@ -36,7 +36,7 @@ class Estados extends CI_Controller {
             "title" => " Listar Estados ",
             "view" => "estados/listar",
             "data" => Array(
-                "paginacao" => createPaginate( strtolower(get_class()), $this->estado->quantidade()),
+                "paginacao" => createPaginate(strtolower(get_class()), $this->estado->quantidade()),
                 "estados" => $this->estado->pegarPorLimite(registerPage(), page()),
             )
         );
@@ -48,12 +48,12 @@ class Estados extends CI_Controller {
      */
     public function adicionar() {
         if ($this->input->post()) {
-            $estado = elements(Array("nome","sigla"), $this->input->post());
+            $estado = elements(Array("nome", "sigla"), $this->input->post());
             if ($this->validacao()) {
                 if ($this->estado->adicionar($estado)) {
-                    $this->mensagem->sucesso( "estados/adicionar");
+                    $this->mensagem->sucesso("estados/adicionar");
                 } else {
-                    $this->mensagem->erro( "estados/listar");
+                    $this->mensagem->erro("estados/listar");
                 }
             } else {
                 $this->mensagem->sucesso("estados/adicionar");
@@ -73,21 +73,21 @@ class Estados extends CI_Controller {
      * editar
      */
     public function editar() {
-        
+
         $id = $this->uri->segment(3);
-        if( ! $this->estado->existe( $id ) ){
-            redirect( "estados/editar" );
+        if (!$this->estado->existe($id)) {
+            redirect("estados/editar");
         }
-        
+
         if ($this->input->post()) {
             $estado = elements(Array("nome", "sigla"), $this->input->post());
-            if ($this->estado->editarPeloId($id,$estado)) {
+            if ($this->estado->editarPeloId($id, $estado)) {
                 $this->mensagem->sucesso("estados/listar/");
-            } else{
-                $this->mensagem->erro("estados/editar/".$id);
-            }            
+            } else {
+                $this->mensagem->erro("estados/editar/" . $id);
+            }
         }
-        
+
         $data = Array(
             "title" => "Editar Estados",
             "view" => "estados/editar",
@@ -96,7 +96,6 @@ class Estados extends CI_Controller {
             )
         );
         $this->load->view("layouts/default", $data);
-        
     }
 
     /**
@@ -104,13 +103,19 @@ class Estados extends CI_Controller {
      */
     public function deletar() {
         $id = $this->uri->segment(3);
-        if( ! $this->estado->existe( $id ) ){
-            redirect( "estados/listar" );
-        }   
-        if( $this->estado->deletarPeloId( $id ) ){
-            $this->mensagem->sucesso( "estados/listar" );
-        }else{
-            $this->mensagem->erro( "estados/listar" );
+        if (!$this->estado->existe($id)) {
+            redirect("estados/listar");
+        }
+        $this->load->model(Array("cidade"));
+        $Existe = ($this->cidade->listarPorCondicoes(array("estado_id" => $id)));
+        if (count($Existe) > 0) {
+            $this->mensagem->erro("estados/listar");
+        } else {
+            if ($this->estado->deletarPeloId($id)) {
+                $this->mensagem->sucesso("estados/listar");
+            } else {
+                $this->mensagem->erro("estados/listar");
+            }
         }
     }
 
@@ -127,10 +132,10 @@ class Estados extends CI_Controller {
      * @return boolean
      */
     public function validacao() {
-        
+
         $this->form_validation->set_rules("nome", 'Nome', 'required');
-        $this->form_validation->set_rules("sigla",'Sigla', 'required');
-        
+        $this->form_validation->set_rules("sigla", 'Sigla', 'required');
+
         return $this->form_validation->run();
     }
 

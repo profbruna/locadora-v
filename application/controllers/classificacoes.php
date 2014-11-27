@@ -104,10 +104,16 @@ class Classificacoes extends CI_Controller {
         if (!$this->classificacao->existe($id)) {
             redirect("classificacoes/listar");
         }
-        if ($this->classificacao->deletarPeloId($id)) {
-            $this->mensagem->sucesso("classificacoes/listar");
-        } else {
+        $this->load->model(Array("produto"));
+        $Existe = ($this->produto->listarPorCondicoes(array("classificacao_id" => $id)));
+        if (count($Existe) > 0) {
             $this->mensagem->erro("classificacoes/listar");
+        } else {
+            if ($this->classificacao->deletarPeloId($id)) {
+                $this->mensagem->sucesso("classificacoes/listar");
+            } else {
+                $this->mensagem->erro("classificacoes/listar");
+            }
         }
     }
 
