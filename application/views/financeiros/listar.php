@@ -44,15 +44,17 @@
                         if ($financeiro->valor_pago != '') {
                             ?>
                             <a href='javascript:;' class="btn btn-xs btn-success disabled" > <i class="glyphicon glyphicon-usd" ></i> Baixa </a>
+                        <a href="javascript:;" class="btn btn-xs btn-warning disabled" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
+                        <a href="javascript:;" class="btn btn-xs btn-danger  disabled" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
                             <?php
                         } else {
                             ?>
                             <a href="<?php echo base_url("financeiros/baixa/" . $financeiro->id); ?>" class="btn btn-xs btn-success" > <i class="glyphicon glyphicon-usd" ></i> Baixa </a>
+                        <a href="<?php echo base_url("financeiros/editar/" . $financeiro->id); ?>" class="btn btn-xs btn-warning" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
+                        <a href="<?php echo base_url("financeiros/deletar/" . $financeiro->id); ?>" data-descricao="<?php echo $financeiro->id ?>" class="btn btn-xs btn-danger btn-modal-deletar" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
                             <?php
                         }
                         ?>
-                        <a href="<?php echo base_url("financeiros/editar/" . $financeiro->id); ?>" class="btn btn-xs btn-warning" > <i class="glyphicon glyphicon-pencil" ></i> Editar </a>
-                        <a href="<?php echo base_url("financeiros/deletar/" . $financeiro->id); ?>" data-descricao="<?php echo $financeiro->id ?>" class="btn btn-xs btn-danger btn-modal-deletar" > <i class="glyphicon glyphicon-remove" ></i> Deletar </a>
                     </td>
                 </tr>
             <?php } ?>
