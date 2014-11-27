@@ -1,25 +1,33 @@
-$(document).ready(function() {
-    $('#data').datepicker({
-        format: "yyyy-mm-dd"
-    });
-    $('#data2').datepicker({
-        format: "yyyy-mm-dd"
-    });
-    $(".mask-telefone").mask("(99) 9999-9999");
+$(document).ready(function () {
 
-    $(".btn-voltar").click(function() {
+    $(".mask-telefone").mask("(99) 9999-9999");
+    $(".mask-date").mask("99/99/9999");
+
+    $(".btn-voltar").click(function () {
         history.back();
     });
 
-    $(".btn-modal-deletar").click(function() {
+    $(".btn-modal-deletar").click(function () {
         $("#ModalExcluirTitle").html("Deseja realmente excluir <b>" + $(this).data("descricao") + "</b>?");
         $("#ConfirmaExclusao").attr("href", $(this).attr("href"));
         $('#ModalExcluir').modal('show');
         return false;
     });
+    $(".btn-modal-devolver").click(function () {
+        $("#ModalDevolverTitle").html("Deseja realmente devolver <b>" + $(this).data("description") + "</b>?");
+        $("#ConfirmaDevolucao").attr("href", $(this).attr("href"));
+        $('#ModalDevolver').modal('show');
+        return false;
+    });
+    $(".btn-modal-devolverTodos").click(function () {
+        $("#ModalDevolverTodosTitle").html("Deseja realmente devolver todos(a) <b>" + $(this).data("description") + "</b>?");
+        $("#ConfirmaDevolucaoTodos").attr("href", $(this).attr("href"));
+        $('#ModalDevolverTodos').modal('show');
+        return false;
+    });
 
     $(".selectpicker").selectpicker();
-    
+
     $(".list-produto-preco").change(function () {
         var valorProduto = $(this).find("option:selected").data("preco");
         var quantidade = $("input[name=quantidade]").val();
