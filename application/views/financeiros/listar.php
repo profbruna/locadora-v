@@ -10,10 +10,6 @@
 
 <div class="col-md-10 col-md-offset-1">
 
-    <div class="row box-options">
-        <a  href="<?php echo base_url("financeiros/adicionar") ?>" class="btn btn-primary pull-right" > <i class="glyphicon glyphicon-plus" ></i> Adicionar </a>
-    </div>
-
     <table class="table table-hover table-striped" >
         <thead>
             <tr>
