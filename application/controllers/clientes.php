@@ -48,7 +48,7 @@ class Clientes extends CI_Controller {
      */
     public function adicionar() {
         if ($this->input->post()) {
-            $cliente = elements(Array("nome", "cpf", "rg", "email"), $this->input->post());
+            $cliente = elements(Array("nome","nascimento", "cpf", "rg", "email"), $this->input->post());
             if($this->validacao()){
                 if ($this->cliente->adicionar($cliente)) {
                 $this->mensagem->sucesso("clientes/adicionar");
@@ -79,7 +79,7 @@ class Clientes extends CI_Controller {
         }
         
         if ($this->input->post()) {
-            $cliente = elements(Array("nome", "cpf", "rg", "email"), $this->input->post());
+            $cliente = elements(Array("nome","nascimento", "cpf", "rg", "email"), $this->input->post());
             
             if($this->validacao()){
                 if ($this->cliente->editarPeloId($id, $cliente)) {
@@ -128,11 +128,12 @@ class Clientes extends CI_Controller {
      */
     public function validacao($dados) {
         $this->form_validation->set_rules("nome", 'Nome', 'required');
+        $this->form_validation->set_rules("nascimento", 'Nascimento', 'required');
         $this->form_validation->set_rules("cpf", 'CPF', 'required');
         $this->form_validation->set_rules("rg", 'RG', 'required');
         $this->form_validation->set_rules("email", 'Email', 'required');
         
-        //executar validações
+        //executar validaï¿½ï¿½es
         return $this->form_validation->run();
     }
 

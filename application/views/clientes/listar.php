@@ -18,6 +18,7 @@
             <tr>
                 <th><b> #ID </b></th>
                 <th> Nome </th>
+                <th> Data de Nascimento </th>
                 <th> Cpf </th>
                 <th> Rg </th>
                 <th> Email </th>
@@ -28,6 +29,7 @@
                 <tr>
                     <td><b>#<?php echo $cliente->id ?> </b></td>
                     <td> <?php echo $cliente->nome ?> </td>
+                    <td> <?php echo $cliente->nascimento ?> </td>
                     <td> <?php echo $cliente->cpf ?> </td>
                     <td> <?php echo $cliente->rg ?> </td>
                     <td> <?php echo $cliente->email ?> </td>
