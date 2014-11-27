@@ -42,4 +42,45 @@ class Produtolocacao extends App {
         return false;
     }
 
+    function verificaQtd() {
+        $verifica = $this->db->get_where('produto_locacao', Array('locacao_id' => $this->uri->segment(4)))->result();
+        // Se existir mais de um produto locado, ele vai decrementar de 1 em 1 ate ele ser completamente removido
+        if ($verifica[0]->quantidade > 1) {
+            $info = Array(
+                "quantidade" => $verifica[0]->quantidade - 1
+            );
+            $this->db->where('id', $this->uri->segment(3));
+            $this->db->update('produto_locacao', $info);
+            $qtdLocado = $this->db->get_where('produto', Array('id' => $this->uri->segment(5)))->result();
+            $devolve = Array(
+                "qtd_locado" => $qtdLocado[0]->qtd_locado - 1
+            );
+            $this->db->where('id', $this->uri->segment(5));
+            $this->db->update('produto', $devolve);
+            return $this->db->affected_rows();
+        } else {
+            $this->db->where('id', $this->uri->segment(3));
+            $this->db->delete('produto_locacao');
+            return $this->db->affected_rows();
+        }
+    }
+
+    /*
+     * Função que é responsável por devolver todos os produtos locados
+     * Caso o usário queira devolver todos os produtos ao mesmo
+     */
+
+    function devolveTodos() {
+        $qtdTotal = $this->db->get_where('produto_locacao', Array('locacao_id' => $this->uri->segment(4)))->result();
+        $qtdLocado = $this->db->get_where('produto', Array('id' => $this->uri->segment(6)))->result();
+        $info3 = Array(
+            "qtd_locado" => $qtdLocado[0]->qtd_locado - $qtdTotal[0]->quantidade
+        );
+        $this->db->where('id', $this->uri->segment(6));
+        $this->db->update('produto', $info3);
+        $this->db->where('id', $this->uri->segment(3));
+        $this->db->delete('produto_locacao');
+        return $this->db->affected_rows();
+    }
+
 }
