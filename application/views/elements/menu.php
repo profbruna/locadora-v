@@ -60,23 +60,25 @@
                 <li>
                     <a href="<?php echo base_url("/usuarios/listar"); ?>">Usuário</a>              
                 </li>
-                
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                              <li> <a href="<?php echo base_url("/relatoriosABC/listar"); ?>">Relatório ABC</a> </li> 
-                            </ul>
-                        </li>
-
-
-
- 
+                    <ul class="dropdown-menu" role="menu">
+                        <li> <a href="<?php echo base_url("/relatorioAniversariantes/listar"); ?>">Aniversariantes</a> </li>
+                        <li> <a href="<?php echo base_url("/relatorioClientes/listar"); ?>">Clientes sem Locação</a> </li> 
+                        <li> <a href="<?php echo base_url("/relatorioLocacoes/listar"); ?>">Locações</a> </li> 
+                        <li> <a href="<?php echo base_url("/relatorioBaixas/listar"); ?>">Pagamentos no Período</a> </li> 
+                        <li> <a href="<?php echo base_url("/relatoriosABC/listar"); ?>">Relatório ABC</a> </li>
+                        <li> <a href="<?php echo base_url("/relatorioVencidos/listar"); ?>">Títulos Vencidos</a> </li> 
+                        <li> <a href="<?php echo base_url("/relatorioValores/listar"); ?>">Valores à Receber</a> </li>
+                    </ul>
+                </li>
 
             </ul>
 
-           <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<?php echo base_url("/login/logout"); ?>"> <i class="glyphicon glyphicon-remove" ></i> Sair</a></li>                        
-                    </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<?php echo base_url("/login/logout"); ?>"> <i class="glyphicon glyphicon-remove" ></i> Sair</a></li>                        
+            </ul>
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
