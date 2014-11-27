@@ -18,7 +18,7 @@ class Produtoslocacoes extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array("locacao", "cliente", "produto", "condicao", "produtolocacao"));
+        $this->load->model(Array("locacao", "cliente", "produto", "condicao", "produtolocacao","financeiro"));
     }
 
     /**
@@ -58,6 +58,7 @@ class Produtoslocacoes extends CI_Controller {
                 if ($this->produto->locacao($produtoLocacao["produto_id"], $produtoLocacao["quantidade"])) {
                     if ($this->produtolocacao->adicionar($produtoLocacao)) {
                         $this->locacao->atualizarValor($produtoLocacao["locacao_id"]);
+                        $this->financeiro->adicionarFinanceiro($produtoLocacao["locacao_id"]);
                         $this->mensagem->sucesso("produtoslocacoes/listar/" . $this->input->post("locacao_id"));
                     }
                 } else {
