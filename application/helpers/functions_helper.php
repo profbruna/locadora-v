@@ -1,4 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 
 /**
@@ -8,11 +11,15 @@
  * @param string $date
  * @return string
  */
-if ( ! function_exists('dateToBR')){
-	function dateToBR($date){
-		$aux = explode( '-' , $date );
-		return $aux[2].'/'.$aux[1].'/'.$aux[0];
-	}
+if (!function_exists('dateToBR')) {
+
+    function dateToBR($date) {
+        if (isset($date)) {
+            $aux = explode('-', $date);
+            return $aux[2] . '/' . $aux[1] . '/' . $aux[0];
+        }
+    }
+
 }
 
 
@@ -23,28 +30,32 @@ if ( ! function_exists('dateToBR')){
  * @param string $date
  * @return string
  */
-if( ! function_exists( 'dateToUSA' ) ){
-	function dateToUSA($date){
-		$aux = explode( '/' , $date );
-		return $aux[2].'-'.$aux[0].'-'.$aux[1];
-	}
+if (!function_exists('dateToUSA')) {
+
+    function dateToUSA($date) {
+        $aux = explode('/', $date);
+        return $aux[2] . '-' . $aux[0] . '-' . $aux[1];
+    }
+
 }
 
 
 
 /**
-* Método que limita o número
-* de caracteres de u texto, adicionando
-* ... ao final, caso este ultrapasse o 
-* número máximo de caracteres
-* 
-* @param string $text
-* @return string
-*/
-if( ! function_exists( 'textLimit' ) ){
-	function textLimit($text){
-		return $text;
-	}
+ * Método que limita o número
+ * de caracteres de u texto, adicionando
+ * ... ao final, caso este ultrapasse o 
+ * número máximo de caracteres
+ * 
+ * @param string $text
+ * @return string
+ */
+if (!function_exists('textLimit')) {
+
+    function textLimit($text) {
+        return $text;
+    }
+
 }
 
 
