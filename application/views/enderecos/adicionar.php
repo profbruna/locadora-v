@@ -2,33 +2,40 @@
     <div class="page-header">
         <h2> Adicionar endereço  </h2>
     </div>
-    <div class="col-md-12">
-        <a class="btn btn-danger btn-voltar" > <i class="glyphicon glyphicon-arrow-left" ></i> Voltar </a>
-    </div>
+  
 </div>
 
 <div class="clearfix"></div>
 <br/>
 
 <div class="col-md-8 col-md-offset-2">
-
+ <br/>
+    <div class="col-md-12">
+        <a class="btn btn-danger btn-voltar" > <i class="glyphicon glyphicon-arrow-left" ></i> Voltar </a>
+    </div>
+ <br/>
+<br/>
+<hr>
     <form role="form" action="" method="post">
         <div class="form-group col-md-12">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <label for="descricao">Cliente</label>
-                <select class="form-control" name="cliente_id">
-                    <?php foreach ($clientes as $cliente): ?>
-                        <option value="<?php echo $cliente->id; ?>"><?php echo $cliente->nome; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>  
+                <!--<select class="form-control" name="cliente_id">-->
+                <?php foreach ($clientes as $cliente): ?>
+                    <select name="cliente_id" class="form-control">
+                        <?php foreach ($clientes as $cliente): ?>
 
-            <div class="col-md-4">
+                            <option value="<?php echo $this->uri->segment(3) ?>"><?php echo $cliente->nome ?></option>
+                        <?php endforeach; ?>
+                    </select> 
+                <?php endforeach; ?>          
+            </div>
+            <div class="col-md-6">
                 <label for="descricao">Logradouro</label>
                 <input type="text" class="form-control" name="logradouro" id="logradouro" required="required">
             </div>  
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="descricao">Tipo</label>
                 <select class="form-control" name="tipo">
                     <?php foreach ($tipos as $tipo): ?>
@@ -52,7 +59,7 @@
                 <input type="text" class="form-control" name="bairro" id="bairro" required="required">
             </div>  
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="descricao">Complemento</label>
                 <input type="text" class="form-control" name="complemento" id="complemento" required="required">
             </div>  
@@ -65,9 +72,8 @@
                     <?php endforeach; ?>
                 </select>
             </div>  
-
             <div class="form-group col-md-12">
-                <div class="col-md-12" >
+                <div class="col-md-12" ><br/>
                     <button type="submit" class="btn btn-success pull-right"> <i class="glyphicon glyphicon-ok" ></i> Salvar</button>
                 </div>
             </div>
