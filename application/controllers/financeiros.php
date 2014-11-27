@@ -24,7 +24,7 @@ class Financeiros extends CI_Controller {
      * index
      */
     public function index() {
-        //redirecionamento para a pagina de listagem quando nao for deninido qual a aï¿½ao
+//redirecionamento para a pagina de listagem quando nao for deninido qual a aï¿½ao
         redirect("financeiros/listar");
     }
 
@@ -48,24 +48,10 @@ class Financeiros extends CI_Controller {
      * adicionar
      */
     public function adicionar($LocacaoId = 1) {
-        /// SEU CÃDIGO RODRIGO
-        $this->load->model(Array("locacao"));
-        $Dados = $this->locacao->ListarPorId($LocacaoId);
-        if (empty($Dados)) {
-            $this->mensagem->erro("financeiros/listar");
-        }
-        /// SEU CÃDIGO RODRIGO
 
-        $this->load->model(Array("condicao"));
-        $DadosCondicao = $this->condicao->ListarPorId($Dados[0]->condicao_pagamento_id);
 
-        $date = new DateTime($Dados[0]->data);
-        $date->add(new DateInterval("P{$DadosCondicao[0]->dias}D"));
-        $LocacaoVencimento = $date->format('Y-m-d');
-        $LocacaoValor = $Dados[0]->valor;
 
-        $financeiro = array("locacao_id" => $LocacaoId, "vencimento" => $LocacaoVencimento, "valor" => $LocacaoValor);
-        if ($this->financeiro->adicionar($financeiro)) {
+        if ($this->financeiro->adicionar($LocacaoId)) {
             $this->mensagem->sucesso("financeiros/listar");
         } else {
             $this->mensagem->erro("financeiros/listar");
@@ -112,6 +98,11 @@ class Financeiros extends CI_Controller {
             $financeiro = elements(array("valor_pago"), $this->input->post());
             if ($this->validacao(true)) {
                 if ($this->financeiro->editarPeloId($id, $financeiro)) {
+                    $this->load->model(Array("baixa"));
+                    $date = new DateTime();
+
+                    $baixa = array("financeiro_id" => $id, "valor" => $financeiro["valor_pago"], "data" => $date->format('Y-m-d'));
+                    $this->baixa->adicionar($baixa);
                     $this->mensagem->sucesso("financeiros/listar");
                 } else {
                     $this->mensagem->erro("financeiros/baixa/$id");
@@ -136,10 +127,10 @@ class Financeiros extends CI_Controller {
     /**
      * deletar
      */
-    public function deletar() {
-        $id = $this->uri->segment(3);
+    public function deletar($id) {
+
         if (!$this->financeiro->existe($id)) {
-            redirect("financeiro/listar");
+            redirect("financeiros/listar");
         }
         if ($this->financeiro->deletarPeloId($id)) {
             $this->mensagem->sucesso("financeiros/listar");
@@ -168,8 +159,20 @@ class Financeiros extends CI_Controller {
             $this->form_validation->set_rules("valor_pago", 'Valor Pago', 'required');
         }
 
-        //executar validações
+//executar validações
         return $this->form_validation->run();
+    }
+
+    /**
+     * @description Mï¿½todo que realiza as validaï¿½ï¿½es dos campos
+     * 
+     * @param Array $dados
+     * @return boolean
+     */
+    public function deletarPorLocacao($locacaoId) {
+        $DadosLancamento = $this->financeiro->listarPorCondicoes(array("locacao_id" => $locacaoId));
+
+        return $this->deletar($DadosLancamento[0]->id);
     }
 
 }
