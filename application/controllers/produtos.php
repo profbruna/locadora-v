@@ -15,17 +15,16 @@ class Produtos extends CI_Controller {
     /**
      * construct
      */
-
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array("produto","tipo","genero","classificacao"));
-
+        $this->load->model(Array("produto", "tipo", "genero", "classificacao"));
     }
+
     /**
      * index
      */
     public function index() {
-        //redirecionamento para a pagina de listagem quando nao for deninido qual a ação
+        //redirecionamento para a pagina de listagem quando nao for deninido qual a aï¿½ï¿½o
         redirect("produtos/listar");
     }
 
@@ -52,14 +51,15 @@ class Produtos extends CI_Controller {
      */
     public function adicionar() {
         if ($this->input->post()) {
-            $produto = elements(Array("nome","tipo_id","genero_id","classificacao_id","preco","qtd_estoque","qtd_locado","qtd_descartado","data_cadastro","detalhes","dias_devolucao","status"), $this->input->post());
+            $produto = elements(Array("nome", "tipo_id", "genero_id", "classificacao_id", "preco", "qtd_estoque", "qtd_locado", "qtd_descartado", "data_cadastro", "detalhes", "dias_devolucao", "status"), $this->input->post());
             if ($this->validacao()) {
+ 
                 if ($this->produto->adicionar($produto)) {
-                    $this->mensagem->sucesso("produtos/adicionar");
+                    $this->mensagem->sucesso("produtos/listar");
                 } else {
-                    $this->mensagem->erro("produtos/listar");
+                    $this->mensagem->erro("produtos/adicionar");
                 }
-            }else{
+            } else {
                 $this->mensagem->erro("produtos/adicionar");
             }
         }
@@ -74,8 +74,7 @@ class Produtos extends CI_Controller {
         );
         $this->load->view("layouts/default", $data);
     }
-    
-    
+
     /**
      * editar
      */
@@ -85,7 +84,7 @@ class Produtos extends CI_Controller {
             redirect("produtos/listar");
         }
         if ($this->input->post()) {
-            $produto = elements(Array("nome","tipo_id","genero_id","classificacao_id","preco","qtd_estoque","qtd_locado","qtd_descartado","data_cadastro","detalhes","dias_devolucao","status"), $this->input->post());
+            $produto = elements(Array("nome", "tipo_id", "genero_id", "classificacao_id", "preco", "qtd_estoque", "qtd_locado", "qtd_descartado", "data_cadastro", "detalhes", "dias_devolucao", "status"), $this->input->post());
             if ($this->validacao()) {
                 if ($this->produto->editarPeloId($id, $produto)) {
                     $this->mensagem->sucesso("produtos/listar");
@@ -102,12 +101,10 @@ class Produtos extends CI_Controller {
                 "tipos" => $this->tipo->listarTodos(),
                 "generos" => $this->genero->listarTodos(),
                 "classificacoes" => $this->classificacao->listarTodos()
-                
             )
         );
         $this->load->view("layouts/default", $data);
     }
-    
 
     /**
      * deletar
@@ -127,28 +124,28 @@ class Produtos extends CI_Controller {
     /**
      * --------------------------------------------------------------------------
      * ---------------------------------
-     * ------ Métodos especificos
+     * ------ Mï¿½todos especificos
      */
 
     /**
-     * @description Método que realiza as validações dos campos
+     * @description Mï¿½todo que realiza as validaï¿½ï¿½es dos campos
      * 
      * @param Array $dados
      * @return boolean
      */
     public function validacao() {
-        $this->form_validation->set_rules("nome", "Nome", "required");
-        $this->form_validation->set_rules("tipo_id", "Tipo_id", "required");
-        $this->form_validation->set_rules("genero_id", "Genero_id", "required");
-        $this->form_validation->set_rules("classificacao_id", "Classificacao_id", "required");
-        $this->form_validation->set_rules("preco", "Preco", "required");
-        $this->form_validation->set_rules("estoque", "Qtd_Estoque", "required");
-        $this->form_validation->set_rules("qtd_locado", "Qtd_Locado", "required");
-        $this->form_validation->set_rules("qtd_descartado", "Qtd_Descartado", "required");
-        $this->form_validation->set_rules("data_cadastro", "Data_Cadastro", "required");
-        $this->form_validation->set_rules("detalhes", "Detalhes", "required");
-        $this->form_validation->set_rules("data_devolucao", "Data_Devolucao", "required");
-        $this->form_validation->set_rules("status", "Status", "required");
+        $this->form_validation->set_rules("nome", "nome", "required");
+        $this->form_validation->set_rules("tipo_id", "tipo_id", "required");
+        $this->form_validation->set_rules("genero_id", "genero_id", "required");
+        $this->form_validation->set_rules("classificacao_id", "classificacao_id", "required");
+        $this->form_validation->set_rules("preco", "preco", "required");
+        $this->form_validation->set_rules("qtd_estoque", "qtd_estoque", "required");
+        $this->form_validation->set_rules("qtd_locado", "qtd_locado", "required");
+        $this->form_validation->set_rules("qtd_descartado", "qtd_descartado", "required");
+        $this->form_validation->set_rules("data_cadastro", "data_cadastro", "required");
+        $this->form_validation->set_rules("detalhes", "detalhes", "required");
+        $this->form_validation->set_rules("dias_devolucao", "dias_devolucao", "required");
+        $this->form_validation->set_rules("status", "status", "required");
         return $this->form_validation->run();
     }
 

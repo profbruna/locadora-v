@@ -11,7 +11,7 @@
                     </div>
                     <div class="modal-footer">
                         <a href="" class="btn btn-danger" id="ConfirmaExclusao">Sim</a>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">N�o</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
                     </div>
                 </div>
             </div>

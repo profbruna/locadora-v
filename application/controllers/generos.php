@@ -7,7 +7,7 @@ if (!defined('BASEPATH')) {
 /**
  * Controller :: Cidades
  * 
- * @author Camila Jung e Ruan Célio
+ * @author Camila Jung e Ruan CÃ©lio
  * @package application.controllers
  */
 class Generos extends CI_Controller {
@@ -35,7 +35,7 @@ class Generos extends CI_Controller {
     //echo $this->pagination->create_links()
     public function listar() {
         $data = Array(
-            "title" => " Listar Gênero ",
+            "title" => " Listar GÃªnero ",
             "view" => "generos/listar",
             "data" => Array(
                 "paginacao" => createPaginate(strtolower(get_class()), $this->genero->quantidade()),
@@ -62,7 +62,7 @@ class Generos extends CI_Controller {
             }
         }
         $data = Array(
-            "title" => "Adicionar Gêneros",
+            "title" => "Adicionar GÃªneros",
             "view" => "generos/adicionar",
             "data" => Array(
                 "generos" => $this->genero->listarTodos()
@@ -91,7 +91,7 @@ class Generos extends CI_Controller {
             }    
         }
         $data = Array(
-            "title" => "Editar Gêneros",
+            "title" => "Editar GÃªneros",
             "view" => "generos/editar",
             "data" => Array(
                 "genero" => $this->genero->listarPorId($id)
@@ -130,7 +130,7 @@ class Generos extends CI_Controller {
     public function validacao() {
         $this->form_validation->set_rules("descricao", 'Descricao', 'required');
 
-        //executar validações
+        //executar validaï¿½ï¿½es
         return $this->form_validation->run();
     }
 

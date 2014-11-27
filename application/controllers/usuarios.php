@@ -27,7 +27,7 @@ class Usuarios extends CI_Controller {
      */
     public function listar() {
         $data = Array(
-            "title" => " Listar Usu�rios ",
+            "title" => " Listar Usuários ",
             "view" => "usuarios/listar",
             "data" => Array(
                 "usuarios" => $this->usuario->listarTodos(),
@@ -50,7 +50,7 @@ class Usuarios extends CI_Controller {
             }
         }
         $data = Array(
-            "title" => "Adicionar Usuarios",
+            "title" => "Adicionar Usuários",
             "view" => "usuarios/adicionar",
             "data" => Array(
             )
@@ -77,7 +77,7 @@ class Usuarios extends CI_Controller {
             }
         }
         $data = Array(
-                "title" => "Editar Usu�rios",
+                "title" => "Editar Usuários",
             "view" => "usuarios/editar",
             "data" => Array(
                 "usuario" => $this->usuario->listarPorId($id)
