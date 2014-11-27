@@ -18,7 +18,7 @@ class Locacoes extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array("locacao", "cliente", "produto", "condicao", "produtolocacao"));
+        $this->load->model(Array("locacao", "cliente", "produto", "condicao", "produtolocacao", "financeiro"));
         $this->load->helper(Array("functions"));
     }
 
@@ -56,6 +56,7 @@ class Locacoes extends CI_Controller {
             $locacao["hora"] = Date("H:i:s");
             if ($this->locacao->adicionar($locacao)) {
                 $locacaoCadastrada = $this->locacao->listarUltimo();
+                $this->financeiro->adicionarFinanceiro($locacaoCadastrada[0]->id);
                 $this->mensagem->sucesso("produtoslocacoes/listar/" . $locacaoCadastrada[0]->id);
             }
             $this->mensagem->erro("locacoes/index");
@@ -80,8 +81,10 @@ class Locacoes extends CI_Controller {
             redirect("locacao/listar");
         }
         if ($this->produtolocacao->deletarPorCondicoesEspecial(Array("locacao_id" => $id))) {
-            if ($this->locacao->deletarPeloId($id)) {
-                $this->mensagem->sucesso("locacoes/listar");
+            if( $this->financeiro->deletarPorCondicoes( Array( "locacao_id" => $id ) ) ) {
+                if ($this->locacao->deletarPeloId($id)) {
+                    $this->mensagem->sucesso("locacoes/listar");
+                }
             }
         }
         $this->mensagem->erro("locacoes/listar");
