@@ -1,7 +1,7 @@
 
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h2> Adicionar CondiÃ§Ã£o de Pagamento </h2>
+        <h2> Adicionar Condição de Pagamento </h2>
     </div>
     <div class="col-md-12">
         <a class="btn btn-danger btn-voltar" > <i class="glyphicon glyphicon-arrow-left" ></i> Voltar </a>

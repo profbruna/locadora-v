@@ -55,7 +55,7 @@ class Tipos extends CI_Controller {
                 } else {
                     $this->mensagem->erro("tipos/listar");
                 }
-            } else {
+            }else{
                 $this->mensagem->erro("tipos/adicionar");
             }
         }
@@ -78,16 +78,16 @@ class Tipos extends CI_Controller {
             redirect("tipos/listar");
         }
         if ($this->input->post()) {
-
+            
             $tipo = elements(Array("descricao"), $this->input->post());
             if ($this->validacao()) {
-                if ($this->tipo->editarPeloid($id, $tipo)) {
-                    $this->mensagem->sucesso("tipos/listar");
-                } else {
-                    $this->mensagem->erro("tipos/editar/" . $id);
-                }
+            if ($this->tipo->editarPeloid($id, $tipo)) {
+                $this->mensagem->sucesso("tipos/listar");
             } else {
                 $this->mensagem->erro("tipos/editar/" . $id);
+            }
+            }else{
+               $this->mensagem->erro("tipos/editar/" . $id);
             }
         }
         $data = Array(
@@ -108,16 +108,10 @@ class Tipos extends CI_Controller {
         if (!$this->tipo->existe($id)) {
             redirect("tipos/listar");
         }
-        $this->load->model(Array("produto"));
-        $Existe = ($this->produto->listarPorCondicoes(array("tipo_id" => $id)));
-        if (count($Existe) > 0) {
-            $this->mensagem->erro("tipos/listar");
+        if ($this->tipo->deletarPeloId($id)) {
+            $this->mensagem->sucesso("tipos/listar");
         } else {
-            if ($this->tipo->deletarPeloId($id)) {
-                $this->mensagem->sucesso("tipos/listar");
-            } else {
-                $this->mensagem->erro("tipos/listar");
-            }
+            $this->mensagem->erro("tipos/listar");
         }
     }
 

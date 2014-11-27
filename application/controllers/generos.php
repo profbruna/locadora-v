@@ -80,16 +80,15 @@ class Generos extends CI_Controller {
             redirect("generos/listar");
         }
         if ($this->input->post()) {
-            $genero = elements(Array("descricao"), $this->input->post());
-            var_dump($genero);
+            $genero = elements(Array("descricao"), $this->input->post());var_dump($genero);
             if ($this->validacao()) {
-
+            
                 if ($this->genero->editarPeloId($id, $genero)) {
                     $this->mensagem->sucesso("generos/listar");
                 } else {
                     $this->mensagem->erro("generos/editar/" . $id);
                 }
-            }
+            }    
         }
         $data = Array(
             "title" => "Editar Gêneros",
@@ -109,16 +108,10 @@ class Generos extends CI_Controller {
         if (!$this->genero->existe($id)) {
             redirect("generos/listar");
         }
-        $this->load->model(Array("produto"));
-        $Existe = ($this->produto->listarPorCondicoes(array("genero_id" => $id)));
-        if (count($Existe) > 0) {
-            $this->mensagem->erro("generos/listar");
+        if ($this->genero->deletarPeloId($id)) {
+            $this->mensagem->sucesso("generos/listar");
         } else {
-            if ($this->genero->deletarPeloId($id)) {
-                $this->mensagem->sucesso("generos/listar");
-            } else {
-                $this->mensagem->erro("generos/listar");
-            }
+            $this->mensagem->erro("generos/listar");
         }
     }
 

@@ -111,14 +111,14 @@ class Condicoes extends CI_Controller {
         }
         $this->load->model(Array("locacao"));
         $ExisteLocacao = ($this->locacao->listarPorCondicoes(array("condicao_pagamento_id" => $id)));
-        if (count($ExisteLocacao) > 0) {
+        if (count($ExisteLocacao)>0) {
             $this->mensagem->erro("condicoes/listar");
+        }else{
+        if ($this->condicao->deletarPeloId($id)) {
+            $this->mensagem->sucesso("condicoes/listar");
         } else {
-            if ($this->condicao->deletarPeloId($id)) {
-                $this->mensagem->sucesso("condicoes/listar");
-            } else {
-                $this->mensagem->erro("condicoes/listar");
-            }
+            $this->mensagem->erro("condicoes/listar");
+        }
         }
     }
 
