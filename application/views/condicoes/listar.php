@@ -1,7 +1,7 @@
 
 <div class="col-md-8 col-md-offset-2">
     <div class="page-header">
-        <h3> Condições </h3>
+        <h3> CondiÃ§Ãµes </h3>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
                 <th> Nome </th>
                 <th> Parcelas </th>
                 <th> Dias Vencimento </th>
-                <th> Ações </th>
+                <th> AÃ§Ãµes </th>
             </tr>
         </thead>
         <tbody>

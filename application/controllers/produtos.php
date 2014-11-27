@@ -53,7 +53,7 @@ class Produtos extends CI_Controller {
         if ($this->input->post()) {
             $produto = elements(Array("nome", "tipo_id", "genero_id", "classificacao_id", "preco", "qtd_estoque", "qtd_locado", "qtd_descartado", "data_cadastro", "detalhes", "dias_devolucao", "status"), $this->input->post());
             if ($this->validacao()) {
- 
+
                 if ($this->produto->adicionar($produto)) {
                     $this->mensagem->sucesso("produtos/listar");
                 } else {
@@ -114,10 +114,16 @@ class Produtos extends CI_Controller {
         if (!$this->produto->existe($id)) {
             redirect("produtos/listar");
         }
-        if ($this->produto->deletarPeloId($id)) {
-            $this->mensagem->sucesso("produtos/listar");
-        } else {
+        $this->load->model(Array("produtolocacao"));
+        $Existe = ($this->produtolocacao->listarPorCondicoes(array("produto_id" => $id)));
+        if (count($Existe) > 0) {
             $this->mensagem->erro("produtos/listar");
+        } else {
+            if ($this->produto->deletarPeloId($id)) {
+                $this->mensagem->sucesso("produtos/listar");
+            } else {
+                $this->mensagem->erro("produtos/listar");
+            }
         }
     }
 
